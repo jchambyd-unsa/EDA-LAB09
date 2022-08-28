@@ -89,8 +89,19 @@ public class GraphAdjacentList implements Graph {
         return -1;
     }
 
-    public boolean removeVertex(int vertex){
-        return false;
+ public boolean removeVertex(int vertex){
+    	Vertex vertice = vertices.get(vertex);
+    	
+    	if (vertice.adjacentVertices.isEmpty()) {
+			return false;
+		}else{
+			for (Vertex v : vertice.adjacentVertices){
+				removeEdge(vertice.data, v.data);	
+			}
+		}
+    	vertices.remove(vertex);
+    	numVertices--;
+        return true;
     }
 
     public static void main(String args[]) {
